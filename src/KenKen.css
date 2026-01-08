@@ -1,0 +1,147 @@
+/* =========================
+   PUZZLE MANAGEMENT
+========================= */
+
+.kenken-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.kenken-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 48px);
+  grid-template-rows: repeat(9, 48px);
+  gap: 0;
+  margin: 0 auto;
+  background: black; /* creates clean outer border */
+  padding: 2px;
+}
+
+.kenken-cell {
+  position: relative;
+  background: white;
+
+  display: grid;
+  grid-template-rows: 14px 1fr; /* top = label space */
+
+  align-items: stretch;
+  justify-items: stretch;
+}
+
+.kenken-cell.selected {
+  background-color: #e6f2ff;
+}
+
+.cage-label {
+  position: absolute;
+  top: 2px;
+  left: 3px;
+
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+
+  pointer-events: none;
+  z-index: 2;
+}
+
+.cell-value {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.notes-grid {
+  position: absolute;
+  inset: 0;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+
+  padding-top: 14px; /* space for cage label */
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-bottom: 2px;
+
+  box-sizing: border-box;
+
+  font-size: 0.55rem;
+  line-height: 1;
+
+  align-items: center;
+  justify-items: center;
+}
+
+.note {
+  opacity: 0;
+}
+
+.note.on {
+  opacity: 1;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+/* =========================
+   PUZZLE SOLVE
+========================= */
+
+.solve-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.solve-message {
+  background: white;
+  padding: 32px 40px;
+  border-radius: 16px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  animation: pop 0.3s ease-out;
+}
+
+.solve-message .subtext {
+  margin-top: 10px;
+  font-size: 1rem;
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.confetti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 998;
+}
